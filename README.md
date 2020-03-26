@@ -31,6 +31,8 @@
     * `pip install -e ./package`
     * Now you can make changes to files locally and they are reflected in the "installed" code
 
+![](file/../data/python-egg-link.jpg)
+
 * Packaging
   * To create a source distribution
     * `python setup.py sdist`
