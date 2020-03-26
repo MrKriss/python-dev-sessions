@@ -11,4 +11,7 @@ setup(
     version="0.1.0",
     # Dependencies that will be installed by pip before this package.
     install_requires=["pandas", "matplotlib"],
+    package_data={
+        "mpg": ["*.json"],
+    }
 )

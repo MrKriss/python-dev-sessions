@@ -36,13 +36,13 @@
     * `python setup.py bdist`
 
 
-# For Future Sessions
+# For Today's Session
 
 * Handling non python files
   * Specifying them in setup.py
     * https://setuptools.readthedocs.io/en/latest/setuptools.html#including-data-files
   * Referring to them in code
-    * Using Path in pathlib with __file__
+    * Using Path in [pathlib](https://docs.python.org/3/library/pathlib.html) with __file__
     * or Resource manager API https://setuptools.readthedocs.io/en/latest/pkg_resources.html#resourcemanager-api
 
 * Defining entry points to the code
