@@ -60,7 +60,9 @@
   * Allows you to make changes with confidence
   * Only then can you refine and improve the code without fear or frustration!
 
-* Some functionality we wish to test
+* Example functionality we wish to test
+  * Config file loading/setting
+  * Data manipulation
 
 * The Pytest library
   * Setting up our project to use tests
@@ -69,6 +71,14 @@
     * Writing tests as functions matching `test_*()` in files matching `test_*.py`
     * Importing the library, easy if pip (-e) installed.
     * Run all tests with: `pytest /path/to/tests`
+
+  * **Potential Pitfall**: Making test directory a package
+    * TLDR: don't put a `__init__.py` file in the `tests/` directory. It's fine in any sub directory further down though.
+    * Means that pytest needs to add the directory `/package` to the path in order to import tests
+    * This means imports in the test may run against the local code not the installed code
+    * This can cause issues, typically when non python files are not installed correctly. Your tests
+  will pass, but only because they are running against the local version of the code, not the
+  installed version.
 
   * Test data files
     * Layout
@@ -81,7 +91,7 @@
 
   * Fixtures
     * Setup resources for a test
-    * scope and autouse parameters
+    * Have scope and autouse parameters
     * Some inbuilt:
       * `tmp_path`: https://docs.pytest.org/en/latest/tmpdir.html
       * `monkeypatch`: Useful for setting environment variables https://docs.pytest.org/en/latest/monkeypatch.html
@@ -107,10 +117,3 @@
   * Marks
     * Parameterise Tests https://docs.pytest.org/en/latest/parametrize.html#parametrize-basics
     * Skipping tests and expected fails (xfail) https://docs.pytest.org/en/latest/skipping.html
-
-  * Potential Pitfall: Making test directory a package
-    * Means that pytest needs to add the directory `/package` to the path in order to import tests
-    * This means imports in the test may run against the local code not the installed code
-    * This can cause issues, typically when non python files are not installed correctly. Your tests
-  will pass, but only because they are running against the local version of the code, not the
-  installed version.
