@@ -53,3 +53,64 @@
 * pipenv, poetry, flit and all manor of other tooling (that you probably don't need to know!)
 
 # Session 3: Testing with Pytest
+
+* Recap of testing & its importance
+  * An automated set to checks to prove a feature of the code works as expected
+  * Provides a level of confidence that certain things work, and quick feedback when they don't!
+  * Allows you to make changes with confidence
+  * Only then can you refine and improve the code without fear or frustration!
+
+* Some functionality we wish to test
+
+* The Pytest library
+  * Setting up our project to use tests
+  * Basic example or test and usage
+    * Layout
+    * Writing tests as functions matching `test_*()` in files matching `test_*.py`
+    * Importing the library, easy if pip (-e) installed.
+    * Run all tests with: `pytest /path/to/tests`
+
+  * Test data files
+    * Layout
+    * Set path using `Path(__file__)`
+
+  * Some useful flags
+    * `--pdb` drop into python debugger as the first failing test
+    * `-v` or `-vv` Give more verbose output of assert outputs
+    * `-x` quite after the first fail
+
+  * Fixtures
+    * Setup resources for a test
+    * scope and autouse parameters
+    * Some inbuilt:
+      * `tmp_path`: https://docs.pytest.org/en/latest/tmpdir.html
+      * `monkeypatch`: Useful for setting environment variables https://docs.pytest.org/en/latest/monkeypatch.html
+      * `capfd`, `caplog` : Capture output to stdout, stderr or to logs https://docs.pytest.org/en/latest/capture.html#accessing-captured-output-from-a-test-function
+    * Can work with `yield` to also do teardown
+    * The `conftest.py` file can used to declare common fixtures for tests in the same folder
+
+  * Test Coverage
+    * Install `pytest-cov` plugin
+    * Use with `pytest /path/to/tests --cov <package_name>`
+    * HTML report with `pytest /path/to/tests --cov <package_name> --cov-report html`
+
+  * Config File
+    * Either `pytest.ini`, `setup.cfg`
+    * https://docs.pytest.org/en/latest/customize.html
+
+  * Testing for Errors and Warnings
+    * https://docs.pytest.org/en/latest/assert.html#assertions-about-expected-exceptions
+    * Using context managers
+      * `with pytest.raises():`
+      * `with pytest.warn():`
+
+  * Marks
+    * Parameterise Tests https://docs.pytest.org/en/latest/parametrize.html#parametrize-basics
+    * Skipping tests and expected fails (xfail) https://docs.pytest.org/en/latest/skipping.html
+
+  * Potential Pitfall: Making test directory a package
+    * Means that pytest needs to add the directory `/package` to the path in order to import tests
+    * This means imports in the test may run against the local code not the installed code
+    * This can cause issues, typically when non python files are not installed correctly. Your tests
+  will pass, but only because they are running against the local version of the code, not the
+  installed version.
