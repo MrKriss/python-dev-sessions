@@ -2,9 +2,8 @@
 from pathlib import Path
 from mpg.utils import load_config
 
-import pytest
 
-TEST_DATA_DIR = Path(__file__).parent / 'data'
+TEST_DATA_DIR = Path(__file__).parent.parent / 'data'
 
 
 def test_load_config():
@@ -17,15 +16,14 @@ def test_load_config():
     assert "datetime_format" in config
 
 
-@pytest.mark.skip("Work in progress")
 def test_load_test_config():
 
     # Given
-    test_file = TEST_DATA_DIR / 'test_config.json'
+    test_config = TEST_DATA_DIR / 'test_config.json'
 
     # When
-    # TODO: add function that uses this
+    config = load_config(test_config)
 
     # Then
-    # assert type(config) == dict
-    # assert "datetime_format_foo" in config
+    assert type(config) == dict
+    assert config["datetime_format"] == "%Y-%m-%d %H:%M:%S"
