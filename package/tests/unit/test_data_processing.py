@@ -5,10 +5,9 @@ import pandas as pd
 from mpg.data import split_make_model_column
 
 
-@pytest.mark.skip("Work in progress")
-def test_split_make_model():
-    # Given
-    test_data = pd.DataFrame({
+@pytest.fixture(scope='session')
+def test_data():
+    return pd.DataFrame({
         'MakeModel': [
             'Mazda RX4',
             'Mazda RX4 Wag',
@@ -29,6 +28,20 @@ def test_split_make_model():
         'Carburetors': [4, 4, 1, 1, 2]
     })
 
+
+def test_split_make_model(test_data):
+
     # When
+    new = split_make_model_column(test_data)
 
     # Then
+    assert "Make" in new.columns
+    assert "Model" in new.columns
+
+    assert new["Make"].tolist() == [
+        'Mazda',
+        'Mazda',
+        'Datsun',
+        'Hornet',
+        'Hornet',
+    ]

@@ -57,6 +57,8 @@ def split_make_model_column(df):
 
     new = df.copy()
 
-    # TODO: Implement this
+    new_columns = new["MakeModel"].str.split(n=1, expand=True)
+    new_columns.columns = ["Make", "Model"]
+    new = pd.concat([new_columns, new], axis=1)
 
     return new
