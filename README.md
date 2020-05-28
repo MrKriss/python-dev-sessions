@@ -121,3 +121,39 @@
   * Marks
     * Parameterise Tests https://docs.pytest.org/en/latest/parametrize.html#parametrize-basics
     * Skipping tests and expected fails (xfail) https://docs.pytest.org/en/latest/skipping.html
+
+# Session 5: Continuous Integration and Azure DevOps Pipelines
+
+* Automated running of your Build & Test Suite in a "production like" environment. Checks that:
+  * Your code is installable in another environment
+  * Your tests pass in another environment
+  * No more "It works on my machine" excuses
+
+* Now we have tests, we need the ability to:
+  1. Setup an automated job (Azure DevOps Pipeline) to run them on each commit.
+  2. Use this as an automated quality check on incoming changes (PRs).
+
+
+## Azure Pipeline Setup
+
+* Create a project in Azure DevOps
+* Setup ssh keys (first time only) and DevOps as a new remote and push the code.
+* Setup a build, or go to Pipelines --> Create
+* The build recipe is now saved alongside the code, so the two never get out of sync.
+
+Resources:
+* [Pipeline Variables](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#set-variables-in-pipeline)
+* [Key Concepts Documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/get-started/key-pipelines-concepts?view=azure-devops)
+* [Azure Pipelines Yaml Reference](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema)
+* [Azure Pipelines in Containers](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/container-phases?view=azure-devops)
+* [Azure Pipelines with conda](https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/anaconda?view=azure-devops&tabs=ubuntu-16-04)
+
+## Running CI on Pull Requests
+
+When using [Feature Branching Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) it can be of great help to validate PRs before they are merged. You can set you Pipeline to run using [branch polices in Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/repos/git/branch-policies-overview?view=azure-devops).
+
+![FeatureBranching](https://s3.amazonaws.com/media-p.slid.es/uploads/huukhiemtong/images/24308/feature_branch_workflow.png)
+
+So you get:
+* No one committing directly to a protected branch (master)
+* No changes getting merged in that don't pass the existing tests
