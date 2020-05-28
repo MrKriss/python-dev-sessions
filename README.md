@@ -150,7 +150,7 @@ Resources:
 
 ## Running CI on Pull Requests
 
-When using [Feature Branching Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) it can be of great help to validate PRs before they are merged. You can set you Pipeline to run using [branch polices in Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/repos/git/branch-policies-overview?view=azure-devops).
+When using [Feature Branching Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) it can be of great help to validate PRs before they are merged. You can set your pipeline to run as a validation check using [branch polices in Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/repos/git/branch-policies-overview?view=azure-devops).
 
 ![FeatureBranching](https://s3.amazonaws.com/media-p.slid.es/uploads/huukhiemtong/images/24308/feature_branch_workflow.png)
 
